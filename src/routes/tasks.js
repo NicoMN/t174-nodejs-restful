@@ -13,14 +13,11 @@ router.post('/', checkAuth, async (request, response) => {
         .json(task);
 });
 
-router.get('/', (request, response) => {
-    const data = {};
-        data.message = `Handling ${request.protocol} ${request.method} for /api/tasks`;
-    
-
-    response
-        .status(200)
-        .json(data);
+router.get('/', async (request, response) => {
+    const tasks = await TaskService.getAll();
+    tasks && tasks.length
+    ? response.json(tasks)
+    : response.status(204).end();
 });
 
 router.get('/:taskId', (request,response) => {
@@ -60,4 +57,7 @@ module.exports = router;
 
 /* const data = {
         message: 'Handling HTTP POST requests for /api/tasks'
-    }; */
+    }; 
+        const data = {};
+        data.message = `Handling ${request.protocol} ${request.method} for /api/tasks`;
+        */

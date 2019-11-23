@@ -15,6 +15,14 @@ class TaskService {
             resolve(task);
         });
     }
+
+    static getAll() {
+        const toArray = key => db[key];
+        return new Promise((resolve) => {
+            const tasks = Object.keys(db).map(toArray);
+            resolve(tasks);
+        });
+    }
 }
 
 module.exports = TaskService;
