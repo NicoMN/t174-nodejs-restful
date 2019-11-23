@@ -23,6 +23,12 @@ class TaskService {
             resolve(tasks);
         });
     }
+
+    static getById(id) {
+        return new Promise((resolve) => {
+            resolve(db[id]);
+        });
+    }
 }
 
 module.exports = TaskService;
