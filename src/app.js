@@ -1,7 +1,12 @@
 const express = require('express');
 const app = express();
 
-app.use((request, response, next) => {
+const taskRouter = require('./routes/tasks');
+app.use('/api/tasks', taskRouter);
+
+module.exports = app;
+
+/*app.use((request, response, next) => {
   const data = {
     message: "It works baby!"
   }
@@ -9,6 +14,8 @@ app.use((request, response, next) => {
   response
     .status(200)
     .json(data)
+
+    next()
 });
 
-module.exports = app;
+app.use(() => console.log('Passed here!'));*/
