@@ -3,6 +3,7 @@ const app = express();
 
 const taskRouter = require('./routes/tasks');
 app.use('/api/tasks', taskRouter);
+app.use(require('./middleware/not-found'));
 
 module.exports = app;
 
