@@ -11,6 +11,7 @@ const notFound = require('./middleware/not-found');
 app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
+app.use(express.json());
 
 // Routes
 const taskRouter = require('./routes/tasks');

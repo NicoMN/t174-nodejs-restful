@@ -1,17 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const TaskService = require('../services/TaskService');
 
 const checkAuth = require('../middleware/check-auth');
 
-router.post('/', checkAuth, (request, response) => {
-    const data = {
-        message: 'Handling HTTP POST requests for /api/tasks'
-    };
+router.post('/', checkAuth, async (request, response) => {
+    const task = await TaskService.add(request.body);
 
     response
         //.status(HttpStatus.OK)
         .status(200)
-        .json(data);
+        .json(task);
 });
 
 router.get('/', (request, response) => {
@@ -58,3 +57,7 @@ router.delete('/:taskId', (request,response) => {
 });
 
 module.exports = router;
+
+/* const data = {
+        message: 'Handling HTTP POST requests for /api/tasks'
+    }; */
