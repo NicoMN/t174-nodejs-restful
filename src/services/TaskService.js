@@ -29,6 +29,17 @@ class TaskService {
             resolve(db[id]);
         });
     }
+
+    static delete(id) {
+        return new Promise((resolve) => {
+            const task = db[id];
+            if(task) {
+                delete db[id];
+                resolve(true);
+            }
+            resolve(false);
+        });
+    }
 }
 
 module.exports = TaskService;
